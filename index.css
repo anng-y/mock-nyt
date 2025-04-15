@@ -86,10 +86,12 @@ hr.s1 {
     padding: 5px;
 }
 
+/* For each article title */
 .item {
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 5px;
+    padding-top: 5px;
     width: auto;
     height: auto;
     border-bottom: 0.5px solid gray;
@@ -101,6 +103,7 @@ hr.s1 {
 
 /* Single column for mobile */
 @media screen and (max-width: 768px) {
+    /* main > left > right */
     .main {grid-area: 1 / span 7;}
     .left {grid-area: 2 / span 7;}
     .right {grid-area: 3 / span 7;}
@@ -110,12 +113,21 @@ hr.s1 {
 
 /* Double column for tablet */
 @media screen and (768px < width < 1024px) {
+    .grid-container {
+        grid-template-areas: 
+        'left left left left left right right'
+        'left2 left2 left2 left2 left2 right right';
+    }
+    /* Main and Right articles will be stacked */
     .main {
-        grid-area: 1 / span 5;
+        grid-area: left;
         border-right: 0.5px solid gray;
     }
-    .left {grid-area: 1 / span 3;}
-    .right {grid-area: 2 / span 7;}
+    .left {grid-area: right;}
+    .right {
+        grid-area: left2;
+        border-right: 0.5px solid gray
+    }
     .header {height: 3.5em;}
     .header > .title {font-size: 2.5em;}
 }
